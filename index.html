@@ -99,12 +99,6 @@ footer.hf{position:absolute;inset-inline:0;bottom:0;z-index:20;display:flex;just
 @media(min-width:640px){#intro h2{font-size:6rem}}
 
 @property --a{syntax:"<angle>";initial-value:0deg;inherits:false}
-.scrim::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:28px 28px;-webkit-mask-image:radial-gradient(75% 65% at 50% 45%,#000,transparent);mask-image:radial-gradient(75% 65% at 50% 45%,#000,transparent)}
-.fc{display:none;position:absolute;z-index:15;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:.85rem;color:var(--heading);white-space:nowrap;animation:fl 7s ease-in-out infinite}
-.fc span{display:flex;align-items:center;gap:.55rem;padding:.65rem 1.1rem;transition:transform .4s ease-out}
-.fc span::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:#a78bfa;box-shadow:0 0 .8rem #a78bfa}
-@keyframes fl{50%{translate:0 -.9rem}}
-@media(min-width:1024px){.fc{display:block}}
 .sec h2::after{content:"";display:block;height:2px;width:4rem;margin-top:1rem;background:linear-gradient(90deg,#22d3ee,#a78bfa,#f0abfc);transform:scaleX(0);transform-origin:left;transition:transform .9s .3s var(--ease-entrance)}
 .sr.in h2::after{transform:none}
 .award.feat::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;background:conic-gradient(from var(--a),transparent 0 68%,#22d3ee,#a78bfa,#f0abfc,transparent);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:spin 5s linear infinite}
@@ -118,16 +112,9 @@ footer.hf{position:absolute;inset-inline:0;bottom:0;z-index:20;display:flex;just
 .gm i{color:#a78bfa;font-style:normal;font-size:2.5rem;align-self:center}
 @media(min-width:640px){.big{font-size:3.25rem}.gm span{font-size:8rem}}
 
-.eyebrow,.card small,.it small,.badge,.fc,.tags span,.chip,.stat span,.hud{font-family:"JetBrains Mono",ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em}
+.eyebrow,.card small,.it small,.badge,.tags span,.chip,.stat span,.hud{font-family:"JetBrains Mono",ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em}
 .eyebrow{font-size:.72rem;color:#67e8f9;letter-spacing:.16em}
-.card small,.it small{font-size:.66rem}.tags span,.chip,.stat span{font-size:.64rem}.fc{font-size:.72rem}.badge{font-size:.68rem}
-.card{background-image:linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa);background-size:14px 1px,1px 14px,14px 1px,1px 14px,14px 1px,1px 14px,14px 1px,1px 14px;background-position:0 0,0 0,100% 0,100% 0,0 100%,0 100%,100% 100%,100% 100%;background-repeat:no-repeat}
-.frame{position:fixed;inset:.9rem;z-index:35;pointer-events:none}
-.frame i{position:absolute;width:1.5rem;height:1.5rem;border:1px solid rgba(255,255,255,.35)}
-.frame i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}.frame i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
-.frame i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}.frame i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
-.scan{position:fixed;left:0;right:0;top:0;height:1px;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(103,232,249,.55),transparent);animation:scan 10s linear infinite}
-@keyframes scan{to{transform:translateY(100vh)}}
+.card small,.it small{font-size:.66rem}.tags span,.chip,.stat span{font-size:.64rem}.badge{font-size:.68rem}
 .hud{display:none;position:absolute;z-index:20;bottom:4.5rem;font-size:.68rem;color:var(--body-muted)}
 .hud b{font-weight:400;color:#67e8f9}
 .hud.l{left:2.5rem}.hud.r{right:2.5rem;display:none;align-items:center;gap:.7rem}
@@ -189,8 +176,6 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
 <body>
 <div class="progress" id="bar"></div>
 <div id="cur" aria-hidden="true"></div>
-<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-<div class="scan" aria-hidden="true"></div>
 <div id="intro"><div class="box"><p class="ey">Founder &amp; CEO</p><h2>NIROOP H</h2><p>MAH Quantum · Bengaluru, India</p><div class="actions"><button class="pill" id="enterS">Enter with sound</button><button class="pill ghost" id="enterQ">Enter silently</button></div></div></div>
 <button class="snd" id="snd" aria-label="Toggle ambient music"><span><i></i><i></i><i></i><i></i></span></button>
 <canvas aria-hidden="true"></canvas>
@@ -217,10 +202,6 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
   </div>
 
 
-  <div class="fc rv up" data-d="1800" style="left:7%;top:30%"><span data-k="22">KDEM Dhruva Awardee · Top 1,111</span></div>
-  <div class="fc rv up" data-d="1950" style="right:7%;top:27%"><span data-k="-26">NATO NCAGE 8066Y</span></div>
-  <div class="fc rv up" data-d="2100" style="left:9%;bottom:24%"><span data-k="-18">Intel · IBM · Microsoft · Google Cloud</span></div>
-  <div class="fc rv up" data-d="2250" style="right:8%;bottom:26%"><span data-k="30">Founders 2.0 Nominee · Singapore</span></div>
 
   <div class="hud l rv up" data-d="2400">Bengaluru &nbsp;<b>12.9716° N, 77.5946° E</b>&nbsp; IST <b id="clk">--:--:--</b></div>
   <div class="hud r rv up" data-d="2400">Scroll</div>
@@ -442,7 +423,6 @@ addEventListener("scroll",vis,{passive:true});vis();
 const gm=["FOUNDER","CEO","RESEARCH","ARTIFICIAL INTELLIGENCE","DEFENCE TECHNOLOGY","ADVANCED COMPUTING"].map(t=>`<span>${t}</span><i>✦</i>`).join("");document.getElementById("trk2").innerHTML=gm+gm;
 const eo=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;eo.unobserve(e.target);const el=e.target,t=el.textContent,n=20;let k=0;const id=setInterval(()=>{const c=Math.floor(k*t.length/n);el.textContent=t.split("").map((ch,i)=>ch===" "||i<c?ch:"ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%"[Math.random()*36|0]).join("");if(++k>n){el.textContent=t;clearInterval(id)}},40)}),{threshold:.5});
 document.querySelectorAll(".eyebrow").forEach(el=>eo.observe(el));
-addEventListener("pointermove",e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;document.querySelectorAll(".fc span").forEach(s=>{const k=+s.dataset.k;s.style.transform=`translate(${x*k}px,${y*k}px)`})});
 
 const clk=document.getElementById("clk"),tick=()=>clk.textContent=new Date().toLocaleTimeString("en-GB",{timeZone:"Asia/Kolkata"});tick();setInterval(tick,1000);
 
