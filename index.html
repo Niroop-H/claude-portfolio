@@ -48,6 +48,28 @@ footer.hf{position:absolute;inset-inline:0;bottom:0;z-index:20;display:flex;just
 .actions{margin-top:1.75rem;display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem}
 .pill.ghost{background:var(--glass-fill);color:var(--heading);border:1px solid var(--glass-border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .pill.ghost:hover{background:rgba(255,255,255,.16)}
+
+.progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:40;background:linear-gradient(90deg,#22d3ee,#6366f1,#d946ef)}
+.navpill a.on{color:var(--heading)}
+#role{display:inline-block;transition:opacity .35s,transform .35s}
+#role.out{opacity:0;transform:translateY(-.3rem)}
+.card{position:relative;overflow:hidden;transition:border-color var(--duration-fast) var(--ease-entrance),background var(--duration-fast) var(--ease-entrance),transform .2s ease-out}
+.card::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(16rem circle at var(--mx,50%) var(--my,50%),rgba(139,92,246,.25),transparent 65%)}
+.card:hover::before{opacity:1}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.stat{border:1px solid var(--glass-border);background:var(--glass-fill);border-radius:1.5rem;padding:1.5rem;text-align:left;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.stat b{display:block;font-weight:500;font-size:2.25rem;letter-spacing:-.02em;background:linear-gradient(90deg,#67e8f9,#a78bfa,#f0abfc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:.8rem;color:var(--body-muted)}
+.award{display:grid;grid-template-columns:auto 1fr;gap:1.25rem}
+.award .ic{width:2.75rem;height:2.75rem;border-radius:50%;display:grid;place-items:center;font-size:1.1rem;color:#fff;background:linear-gradient(135deg,#22d3ee,#6366f1,#d946ef);box-shadow:0 0 1.5rem rgba(139,92,246,.45)}
+.chip{display:inline-block;vertical-align:middle;margin-left:.4rem;font-size:.68rem;font-weight:400;padding:.15rem .6rem;border-radius:9999px;border:1px solid rgba(167,139,250,.5);color:#ddd6fe;background:rgba(139,92,246,.15)}
+.tl{position:relative;margin-top:2rem;padding-left:1.75rem;max-width:42rem}
+.tl::before{content:"";position:absolute;left:.3rem;top:.4rem;bottom:.4rem;width:1px;background:linear-gradient(var(--glass-border),rgba(139,92,246,.7),var(--glass-border))}
+.it{position:relative;padding-bottom:1.75rem}
+.it::before{content:"";position:absolute;left:-1.78rem;top:.3rem;width:.7rem;height:.7rem;border-radius:50%;background:var(--hero-base);border:2px solid #a78bfa;box-shadow:0 0 .8rem rgba(139,92,246,.8)}
+.it small{display:block;font-size:.75rem;color:#a5b4fc;margin-bottom:.3rem}
+.it h3{font-weight:500;font-size:1.1rem;letter-spacing:-.01em}
+.it p{color:var(--body-muted);font-size:.9rem;line-height:1.55;margin-top:.3rem}
 /* reveals */
 .rv{opacity:0;transition:opacity 700ms var(--ease-entrance),transform 700ms var(--ease-entrance)}
 .rv.nav{transform:translateY(-.75rem)}.rv.up{transform:translateY(1.25rem)}
@@ -92,12 +114,15 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
  .about{grid-template-columns:1fr 22rem;gap:4rem}
  .cards{grid-template-columns:repeat(3,1fr)}
  .cards.two{grid-template-columns:repeat(2,1fr)}
+ .stats{grid-template-columns:repeat(4,1fr)}
+ .award.feat{grid-column:1/-1}
 }
 @media(min-width:1024px){.col{max-width:52rem}h1{max-width:46rem;font-size:5rem}.sub{max-width:none;font-size:1.2rem}}
 @media(prefers-reduced-motion:reduce){.rv,.sr,.w{transition:none!important}}
 </style>
 </head>
 <body>
+<div class="progress" id="bar"></div>
 <canvas aria-hidden="true"></canvas>
 <div class="scrim" aria-hidden="true"></div>
 
@@ -109,13 +134,13 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
       Niroop H
     </a>
     <nav class="navpill" aria-label="Main">
-      <a href="#about">About</a><a href="#organizations">Work</a><a href="#projects">Projects</a><a href="#records">Records</a><a href="#partners">Partners</a><a href="#education">Education</a><a href="#contact">Contact</a>
+      <a href="#about">About</a><a href="#organizations">Work</a><a href="#awards">Awards</a><a href="#projects">Projects</a><a href="#partners">Partners</a><a href="#journey">Journey</a><a href="#contact">Contact</a>
     </nav>
     <a class="pill" href="https://www.linkedin.com/in/nirooph" target="_blank" rel="noreferrer">Get in touch</a>
   </header>
 
   <div class="col">
-    <p class="badge rv up" data-d="320">Founder &amp; CEO · MAH Quantum</p>
+    <p class="badge rv up" data-d="320"><span id="role">Founder &amp; CEO · MAH Quantum</span></p>
     <h1 data-words="NIROOP H" data-d="480" data-s="85" data-t="720" data-y="26"></h1>
     <p class="sub" data-words="Hi, I’m Niroop — Founder &amp; CEO of MAH Quantum in Bengaluru. I build AI, defence intelligence and advanced computing systems for a world that needs to think clearly." data-d="1150" data-s="22" data-t="600" data-y="14"></p>
     <div class="actions rv up" data-d="1450"><a class="pill" href="#projects">View projects</a><a class="pill ghost" href="https://www.linkedin.com/in/nirooph" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
@@ -136,6 +161,17 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
   </div>
 </section>
 
+<section class="sec" id="stats">
+  <div class="wrap sr">
+    <div class="stats">
+      <div class="stat"><b data-count="1111">0</b><span>Companies in the KDEM Dhruva cohort</span></div>
+      <div class="stat"><b data-count="4">0</b><span>Organizations led</span></div>
+      <div class="stat"><b data-count="4">0</b><span>Technology partners</span></div>
+      <div class="stat"><b data-count="3">0</b><span>Flagship projects</span></div>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="organizations">
   <div class="wrap sr">
     <div class="eyebrow">Organizations</div>
@@ -145,6 +181,18 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
       <a class="card" href="https://research.mahquantum.tech/" target="_blank" rel="noreferrer"><small>Founder &amp; Head of Research · Research</small><h3>MAH Quantum Research Institute ↗</h3><p>Research-focused division working across scholarly publishing, research collaboration and academic infrastructure.</p></a>
       <a class="card" href="https://mahquantum.tech/industries" target="_blank" rel="noreferrer"><small>Leadership &amp; International Relations · Industry</small><h3>Devashri S Industries™ ↗</h3><p>Industrial and deep-technology activities including semiconductor technologies and SmartGrid initiatives.</p></a>
       <a class="card" href="https://mahquantum.tech/industries" target="_blank" rel="noreferrer"><small>Business Operations &amp; Industry Relations · Industry</small><h3>Quanta Industries ↗</h3><p>Business operations, institutional relationships and industry partnership initiatives.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="awards">
+  <div class="wrap sr">
+    <div class="eyebrow">Honours &amp; awards</div>
+    <h2>Recognition</h2>
+    <div class="cards two">
+      <article class="card award feat"><div class="ic">★</div><div><small>Aug 2026 · Karnataka Digital Economy Mission · MAH Quantum</small><h3>KDEM Dhruva Programme Awardee <span class="chip">Top 1,111 Companies</span></h3><p>Vetted and selected by an expert industry and defence jury — including leadership from the Data Security Council of India (DSCI), BEML Limited (Ministry of Defence) and global enterprise infrastructure executives — in recognition of MAH Quantum’s deep-tech engineering, architectural viability and infrastructure scalability.</p><div class="tags"><span>Nebula Tier</span><span>Deep Tech</span><span>Defence</span></div></div></article>
+      <article class="card award"><div class="ic">★</div><div><small>Sep 2026 · The 2.0 Conferences · MAH Quantum</small><h3>Entrepreneurial Excellence Award <span class="chip">Nominated</span></h3><p>Founders 2.0 Conference (Singapore, December 2026). Nominated by the global committee in recognition of tech sector innovation and leadership impact.</p></div></article>
+      <article class="card award"><div class="ic">★</div><div><small>Sep 2026 · Smart India Hackathon · Christ University</small><h3>Smart India Hackathon <span class="chip">Nominated</span></h3><p>Nomination verified for Smart India Hackathon 2026, representing Christ University, Bangalore.</p></div></article>
     </div>
   </div>
 </section>
@@ -187,14 +235,18 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
   </div>
 </section>
 
-<section class="sec" id="education">
+<section class="sec" id="journey">
   <div class="wrap sr">
-    <div class="eyebrow">Education</div>
-    <h2>Academic background</h2>
-    <div class="cards">
-      <div class="card"><small>2025 – 2029</small><h3>Christ University, Bangalore</h3><p>B.Tech Computer Science &amp; Engineering — Honours: Artificial Intelligence &amp; Machine Learning</p></div>
-      <div class="card"><small>2023 – 2025</small><h3>CBSE</h3><p>Senior Secondary Education, Class XI – XII</p></div>
-      <div class="card"><small>2013 – 2023</small><h3>CISCE</h3><p>School Education, Class I – X</p></div>
+    <div class="eyebrow">Journey</div>
+    <h2>Education &amp; milestones</h2>
+    <div class="tl">
+      <div class="it"><small>Sep 2026</small><h3>Nominated — Founders 2.0 &amp; Smart India Hackathon</h3><p>Entrepreneurial Excellence Award nomination (Singapore) and a Smart India Hackathon nomination.</p></div>
+      <div class="it"><small>Aug 2026</small><h3>KDEM Dhruva Programme Awardee</h3><p>MAH Quantum selected among the Top 1,111 companies, Nebula Tier.</p></div>
+      <div class="it"><small>Jul 2026 – Present</small><h3>ASURA Defence Intelligence System</h3><p>Architecting a zero-trust, sovereign C4ISR and intelligence fusion engine.</p></div>
+      <div class="it"><small>Jul – Dec 2025</small><h3>AgriSentinel</h3><p>Edge-AI Red Palm Beetle detection system at Christ University.</p></div>
+      <div class="it"><small>2025 – 2029</small><h3>Christ University, Bangalore</h3><p>B.Tech Computer Science &amp; Engineering — Honours: Artificial Intelligence &amp; Machine Learning.</p></div>
+      <div class="it"><small>2023 – 2025</small><h3>CBSE</h3><p>Senior Secondary Education, Class XI – XII.</p></div>
+      <div class="it"><small>2013 – 2023</small><h3>CISCE</h3><p>School Education, Class I – X.</p></div>
     </div>
   </div>
 </section>
@@ -247,6 +299,21 @@ requestAnimationFrame(() => requestAnimationFrame(() => {
 
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12 });
 document.querySelectorAll(".sr").forEach(el => io.observe(el));
+
+// progress bar, active nav, counters, card spotlight + tilt, role rotator
+const bar=document.getElementById("bar");
+addEventListener("scroll",()=>{const h=document.documentElement;bar.style.width=(scrollY/(h.scrollHeight-innerHeight)*100)+"%"},{passive:true});
+const links=[...document.querySelectorAll(".navpill a")];
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle("on",l.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-45% 0px -50% 0px"});
+links.forEach(l=>{const t=document.querySelector(l.getAttribute("href"));t&&spy.observe(t)});
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cio.unobserve(e.target);const n=+e.target.dataset.count,t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/1400);e.target.textContent=Math.round(n*(1-Math.pow(1-p,3))).toLocaleString();if(p<1)requestAnimationFrame(f)})(t0)}),{threshold:.6});
+document.querySelectorAll("[data-count]").forEach(el=>cio.observe(el));
+if(matchMedia("(hover:hover)").matches)document.querySelectorAll(".card").forEach(c=>{
+  c.addEventListener("pointermove",e=>{const r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;c.style.setProperty("--mx",x+"px");c.style.setProperty("--my",y+"px");c.style.transform=`perspective(800px) rotateX(${((y/r.height)-.5)*-6}deg) rotateY(${((x/r.width)-.5)*6}deg) translateY(-2px)`});
+  c.addEventListener("pointerleave",()=>c.style.transform="");
+});
+const roles=["Founder & CEO · MAH Quantum","Founder & Head of Research · MAH Quantum Research Institute","KDEM Dhruva Programme Awardee · Aug 2026"],rl=document.getElementById("role");let ri=0;
+setInterval(()=>{rl.classList.add("out");setTimeout(()=>{ri=(ri+1)%roles.length;rl.textContent=roles[ri];rl.classList.remove("out")},350)},3200);
 
 try { const c = document.querySelector("canvas"); if (c) fluidSimulation(c); } catch (err) { console.warn("Fluid unavailable", err); }
 
