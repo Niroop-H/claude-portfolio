@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&display=swap" rel="stylesheet">
 <script type="importmap">{ "imports": { "lenis": "https://unpkg.com/lenis@1.3.19/dist/lenis.mjs" } }</script>
 <style>
-:root{--hero-base:#04050c;--heading:#eef0f6;--body-muted:#b9becf;--on-media:#fff;--action-inverse:#fff;--action-inverse-fg:#2f2f33;--glass-fill:rgba(255,255,255,.08);--glass-border:rgba(255,255,255,.16);--scrim:rgba(4,5,12,.46);--scrim-strong:rgba(4,5,12,.68);--scrim-soft:rgba(4,5,12,.12);--duration-fast:150ms;--ease-entrance:cubic-bezier(.2,0,0,1)}
+:root{--hero-base:#04050c;--heading:#eef0f6;--body-muted:#b9becf;--on-media:#fff;--action-inverse:#fff;--action-inverse-fg:#2f2f33;--glass-fill:rgba(255,255,255,.08);--glass-border:rgba(255,255,255,.16);--scrim:rgba(4,5,12,.46);--scrim-strong:rgba(4,5,12,.68);--scrim-soft:rgba(4,5,12,.3);--duration-fast:150ms;--ease-entrance:cubic-bezier(.2,0,0,1)}
 *{margin:0;box-sizing:border-box}
 html{font-size:16px}
 @media(max-width:1920px){html{font-size:.833333vw}}
@@ -23,13 +23,13 @@ html{font-size:16px}
 a{color:inherit;text-decoration:none}
 button{background:none;border:0;font:inherit;color:inherit;cursor:pointer}
 body{font-family:"Onest",sans-serif;background:var(--hero-base);color:var(--heading);overflow-x:hidden}
-.hero{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100lvh;width:100vw;overflow:hidden;background:var(--hero-base);text-align:center;padding:0 1.25rem}
-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(115% 95% at 50% 46%,var(--scrim-strong) 0%,var(--scrim-strong) 24%,var(--scrim) 52%,var(--scrim-soft) 100%)}
-header{position:absolute;inset-inline:0;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:1.25rem}
+.hero{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100lvh;width:100vw;overflow:hidden;background:transparent;text-align:center;padding:0 1.25rem}
+canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.scrim{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(115% 95% at 50% 46%,var(--scrim-strong) 0%,var(--scrim-strong) 24%,var(--scrim) 52%,var(--scrim-soft) 100%)}
+header{position:fixed;inset-inline:0;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:1.25rem}
 .brand{display:flex;align-items:center;gap:.6rem;font-weight:500;font-size:1.15rem;color:var(--on-media);letter-spacing:-.01em}
 .brand svg{width:1.35rem;height:1.35rem;stroke:currentColor}
-.navpill{display:none;position:absolute;left:50%;transform:translateX(-50%);height:3rem;align-items:center;gap:2.25rem;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);padding:0 1.75rem;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.navpill{display:none;position:absolute;left:50%;transform:translateX(-50%);height:3rem;align-items:center;gap:1.75rem;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);padding:0 1.75rem;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .navpill a{font-size:.95rem;color:var(--body-muted);white-space:nowrap;transition:color var(--duration-fast) var(--ease-entrance)}
 .navpill a:hover{color:var(--heading)}
 .pill{display:inline-flex;align-items:center;justify-content:center;height:2.5rem;border-radius:9999px;background:var(--action-inverse);padding:0 1.125rem;font-size:.85rem;font-weight:500;color:var(--action-inverse-fg);box-shadow:0 1px 2px rgba(0,0,0,.05);transition:background var(--duration-fast) var(--ease-entrance);white-space:nowrap}
@@ -45,6 +45,9 @@ form{width:37rem;max-width:100%}
 .bar input{flex:1;min-width:0;height:100%;background:transparent;border:0;outline:0;color:var(--heading);font:inherit;font-size:.95rem}
 .bar input::placeholder{color:var(--body-muted)}
 footer.hf{position:absolute;inset-inline:0;bottom:0;z-index:20;display:flex;justify-content:center;padding:1.25rem;font-size:.72rem;color:var(--body-muted)}
+.actions{margin-top:1.75rem;display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem}
+.pill.ghost{background:var(--glass-fill);color:var(--heading);border:1px solid var(--glass-border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.pill.ghost:hover{background:rgba(255,255,255,.16)}
 /* reveals */
 .rv{opacity:0;transition:opacity 700ms var(--ease-entrance),transform 700ms var(--ease-entrance)}
 .rv.nav{transform:translateY(-.75rem)}.rv.up{transform:translateY(1.25rem)}
@@ -52,7 +55,7 @@ footer.hf{position:absolute;inset-inline:0;bottom:0;z-index:20;display:flex;just
 .w{display:inline-block;opacity:0;transition-property:opacity,transform;transition-timing-function:cubic-bezier(.215,.61,.355,1)}
 .w.in{opacity:1;transform:none!important}
 /* portfolio below hero */
-.sec{position:relative;background:var(--hero-base);padding:7rem 1.25rem;display:flex;flex-direction:column;align-items:center}
+.sec{position:relative;z-index:10;background:transparent;padding:7rem 1.25rem;display:flex;flex-direction:column;align-items:center}
 .wrap{width:100%;max-width:22rem}
 .sec h2{font-size:1.75rem;font-weight:500;letter-spacing:-.02em;line-height:1.1}
 .eyebrow{font-size:.8rem;color:var(--body-muted);margin-bottom:1rem}
@@ -68,7 +71,7 @@ a.card:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3)}
 .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
 .tags span{font-size:.72rem;color:var(--body-muted);border:1px solid var(--glass-border);border-radius:9999px;padding:.2rem .65rem}
 .sec+.sec{padding-top:0}
-footer.f{padding:2rem 1.25rem 3rem;text-align:center;color:var(--body-muted);font-size:.8rem;background:var(--hero-base)}
+footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:center;color:var(--body-muted);font-size:.8rem}
 .sr{opacity:0;transform:translateY(1.5rem);transition:opacity 700ms var(--ease-entrance),transform 700ms var(--ease-entrance)}
 .sr.in{opacity:1;transform:none}
 @media(min-width:640px){
@@ -81,12 +84,12 @@ footer.f{padding:2rem 1.25rem 3rem;text-align:center;color:var(--body-muted);fon
  .badge{font-size:.8rem}
  h1{margin-top:1.75rem;max-width:34rem;font-size:3.5rem}
  .sub{margin-top:1.25rem;max-width:34rem;font-size:1.1rem}
- .formwrap{margin-top:2.5rem}
+ .actions{margin-top:2.5rem}
  .bar{height:4rem;padding-left:1.5rem;padding-right:.4rem}.bar input{font-size:1.15rem}
  footer.hf{padding:1.5rem 2.5rem;font-size:.8rem}
  .sec{padding:9rem 2.5rem}.wrap{max-width:60rem}
  .sec h2{font-size:2.75rem}
- .about{grid-template-columns:22rem 1fr;gap:4rem}
+ .about{grid-template-columns:1fr 22rem;gap:4rem}
  .cards{grid-template-columns:repeat(3,1fr)}
  .cards.two{grid-template-columns:repeat(2,1fr)}
 }
@@ -95,9 +98,10 @@ footer.f{padding:2rem 1.25rem 3rem;text-align:center;color:var(--body-muted);fon
 </style>
 </head>
 <body>
+<canvas aria-hidden="true"></canvas>
+<div class="scrim" aria-hidden="true"></div>
+
 <section class="hero" id="top">
-  <canvas aria-hidden="true"></canvas>
-  <div class="scrim" aria-hidden="true"></div>
 
   <header class="rv nav" data-d="150">
     <a href="#top" class="brand">
@@ -105,7 +109,7 @@ footer.f{padding:2rem 1.25rem 3rem;text-align:center;color:var(--body-muted);fon
       Niroop H
     </a>
     <nav class="navpill" aria-label="Main">
-      <a href="#about">About</a><a href="#projects">Projects</a><a href="#records">Records</a><a href="#contact">Contact</a>
+      <a href="#about">About</a><a href="#organizations">Work</a><a href="#projects">Projects</a><a href="#records">Records</a><a href="#partners">Partners</a><a href="#education">Education</a><a href="#contact">Contact</a>
     </nav>
     <a class="pill" href="https://www.linkedin.com/in/nirooph" target="_blank" rel="noreferrer">Get in touch</a>
   </header>
@@ -113,10 +117,8 @@ footer.f{padding:2rem 1.25rem 3rem;text-align:center;color:var(--body-muted);fon
   <div class="col">
     <p class="badge rv up" data-d="320">Founder &amp; CEO · MAH Quantum</p>
     <h1 data-words="NIROOP H" data-d="480" data-s="85" data-t="720" data-y="26"></h1>
-    <p class="sub" data-words="AI, defence intelligence and advanced computing — engineered from Bengaluru for a world that needs to think clearly." data-d="1150" data-s="22" data-t="600" data-y="14"></p>
-    <div class="formwrap rv up" data-d="1450">
-      <form id="f"><div class="bar"><input type="email" required placeholder="Enter your email" aria-label="Email"><button class="pill" type="submit">Stay Updated</button></div></form>
-    </div>
+    <p class="sub" data-words="Hi, I’m Niroop — Founder &amp; CEO of MAH Quantum in Bengaluru. I build AI, defence intelligence and advanced computing systems for a world that needs to think clearly." data-d="1150" data-s="22" data-t="600" data-y="14"></p>
+    <div class="actions rv up" data-d="1450"><a class="pill" href="#projects">View projects</a><a class="pill ghost" href="https://www.linkedin.com/in/nirooph" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
   </div>
 
   <footer class="hf rv up" data-d="1650">© 2026 Niroop H — engineered for deep work.</footer>
@@ -124,12 +126,25 @@ footer.f{padding:2rem 1.25rem 3rem;text-align:center;color:var(--body-muted);fon
 
 <section class="sec" id="about">
   <div class="wrap about sr">
-    <img src="niroop.jpeg" alt="Portrait of Niroop H" loading="lazy">
     <div>
       <div class="eyebrow">About</div>
       <h2>Founder &amp; CEO, MAH Quantum</h2>
       <p>Niroop H builds technology across AI, DeepTech and advanced computing from Bengaluru, India. He leads MAH Quantum and is pursuing a B.Tech in Computer Science &amp; Engineering (Honours in AI &amp; ML) at Christ University, Bangalore.</p>
-      <div class="tags"><span>Artificial Intelligence</span><span>DeepTech</span><span>C4ISR</span><span>Edge AI</span><span>Semiconductors</span><span>Smart Grids</span></div>
+      <div class="tags"><span>Artificial Intelligence</span><span>DeepTech</span><span>C4ISR</span><span>Edge AI</span><span>Advanced Computing</span><span>Semiconductors</span><span>Smart Grids</span><span>Research &amp; Development</span></div>
+    </div>
+    <img src="niroop.jpeg" alt="Portrait of Niroop H" loading="lazy">
+  </div>
+</section>
+
+<section class="sec" id="organizations">
+  <div class="wrap sr">
+    <div class="eyebrow">Organizations</div>
+    <h2>Work &amp; affiliations</h2>
+    <div class="cards two">
+      <a class="card" href="https://mahquantum.tech/" target="_blank" rel="noreferrer"><small>Founder &amp; Chief Executive Officer · Primary</small><h3>MAH Quantum™ ↗</h3><p>Technology and research organization working across AI, advanced computing, DeepTech and intelligent systems.</p></a>
+      <a class="card" href="https://research.mahquantum.tech/" target="_blank" rel="noreferrer"><small>Founder &amp; Head of Research · Research</small><h3>MAH Quantum Research Institute ↗</h3><p>Research-focused division working across scholarly publishing, research collaboration and academic infrastructure.</p></a>
+      <a class="card" href="https://mahquantum.tech/industries" target="_blank" rel="noreferrer"><small>Leadership &amp; International Relations · Industry</small><h3>Devashri S Industries™ ↗</h3><p>Industrial and deep-technology activities including semiconductor technologies and SmartGrid initiatives.</p></a>
+      <a class="card" href="https://mahquantum.tech/industries" target="_blank" rel="noreferrer"><small>Business Operations &amp; Industry Relations · Industry</small><h3>Quanta Industries ↗</h3><p>Business operations, institutional relationships and industry partnership initiatives.</p></a>
     </div>
   </div>
 </section>
@@ -151,9 +166,35 @@ footer.f{padding:2rem 1.25rem 3rem;text-align:center;color:var(--body-muted);fon
     <div class="eyebrow">Public records</div>
     <h2>Verifiable identifiers</h2>
     <div class="cards">
-      <a class="card" href="https://sam.gov/entities/view/P2K2F5T4FE26/coreData?status=Active&regId=18292847" target="_blank" rel="noreferrer"><small>U.S. Federal Government</small><h3>SAM.gov Entity Record</h3><p>P2K2F5T4FE26</p></a>
-      <a class="card" href="https://eportal.nspa.nato.int/Codification/CageTool/cage-view/8066Y" target="_blank" rel="noreferrer"><small>NATO Support and Procurement Agency</small><h3>NCAGE 8066Y</h3><p>NATO Commercial and Government Entity code.</p></a>
+      <a class="card" href="https://sam.gov/entities/view/P2K2F5T4FE26/coreData?status=Active&regId=18292847" target="_blank" rel="noreferrer"><small>Government record · U.S. Federal Government</small><h3>SAM.gov Entity Record</h3><p>P2K2F5T4FE26</p></a>
+      <a class="card" href="https://eportal.nspa.nato.int/Codification/CageTool/cage-view/8066Y" target="_blank" rel="noreferrer"><small>NATO record · NATO Support and Procurement Agency</small><h3>NCAGE 8066Y</h3><p>NATO Commercial and Government Entity code.</p></a>
       <div class="card"><small>European Commission</small><h3>PIC Holder</h3><p>PIC 863543956</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="partners">
+  <div class="wrap sr">
+    <div class="eyebrow">Technology partners</div>
+    <h2>Partner ecosystem</h2>
+    <div class="cards two">
+      <a class="card" href="https://www.intel.com/content/www/us/en/partner/showcase/storefront/a5Scv0000004BhdEAE/mah-quantum.html" target="_blank" rel="noreferrer"><small>Technology partner</small><h3>Intel Partner ↗</h3><p>MAH Quantum listing in the Intel Partner Directory.</p></a>
+      <a class="card" href="https://www.ibm.com/partnerplus" target="_blank" rel="noreferrer"><small>Technology partner</small><h3>IBM Business Partner ↗</h3><p>IBM PartnerPlus.</p></a>
+      <a class="card" href="https://partner.microsoft.com/" target="_blank" rel="noreferrer"><small>Technology partner</small><h3>Microsoft AI Cloud Partner ↗</h3><p>Microsoft Partner Network.</p></a>
+      <a class="card" href="https://cloud.google.com/partners" target="_blank" rel="noreferrer"><small>Technology partner</small><h3>Google Cloud Partner ↗</h3><p>Google Cloud Partner Advantage.</p></a>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.8rem;color:var(--body-muted)">Partnerships and entity records are organizational (MAH Quantum), not personal certifications.</p>
+  </div>
+</section>
+
+<section class="sec" id="education">
+  <div class="wrap sr">
+    <div class="eyebrow">Education</div>
+    <h2>Academic background</h2>
+    <div class="cards">
+      <div class="card"><small>2025 – 2029</small><h3>Christ University, Bangalore</h3><p>B.Tech Computer Science &amp; Engineering — Honours: Artificial Intelligence &amp; Machine Learning</p></div>
+      <div class="card"><small>2023 – 2025</small><h3>CBSE</h3><p>Senior Secondary Education, Class XI – XII</p></div>
+      <div class="card"><small>2013 – 2023</small><h3>CISCE</h3><p>School Education, Class I – X</p></div>
     </div>
   </div>
 </section>
@@ -162,11 +203,13 @@ footer.f{padding:2rem 1.25rem 3rem;text-align:center;color:var(--body-muted);fon
   <div class="wrap sr">
     <div class="eyebrow">Contact</div>
     <h2>Let's connect</h2>
-    <div class="cards two">
+    <div class="cards">
       <a class="card" href="https://www.linkedin.com/in/nirooph" target="_blank" rel="noreferrer"><small>Professional profile</small><h3>LinkedIn ↗</h3></a>
       <a class="card" href="https://mahquantum.tech/" target="_blank" rel="noreferrer"><small>Organization</small><h3>MAH Quantum ↗</h3></a>
-      <a class="card" href="https://github.com/Niroop-H" target="_blank" rel="noreferrer"><small>Code</small><h3>GitHub ↗</h3></a>
-      <a class="card" href="https://research.mahquantum.tech/" target="_blank" rel="noreferrer"><small>Research</small><h3>MAH Quantum Research Institute ↗</h3></a>
+      <a class="card" href="https://research.mahquantum.tech/" target="_blank" rel="noreferrer"><small>Research</small><h3>Research Institute ↗</h3></a>
+      <a class="card" href="https://github.com/mahquantum" target="_blank" rel="noreferrer"><small>Code</small><h3>GitHub ↗</h3></a>
+      <a class="card" href="https://huggingface.co/mah-quantum" target="_blank" rel="noreferrer"><small>Models</small><h3>Hugging Face ↗</h3></a>
+      <a class="card" href="https://workspace.mahquantum.tech/" target="_blank" rel="noreferrer"><small>Tools</small><h3>Workspace ↗</h3></a>
     </div>
   </div>
 </section>
@@ -177,8 +220,6 @@ import Lenis from "lenis";
 const lenis = new Lenis({ smoothWheel: true });
 function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
 requestAnimationFrame(raf);
-
-document.getElementById("f").addEventListener("submit", e => e.preventDefault());
 
 // word-by-word setup
 document.querySelectorAll("[data-words]").forEach(el => {
@@ -282,8 +323,8 @@ function fluidSimulation(canvas) {
   const baseVertexShader = V(`precision highp float;attribute vec2 aPosition;varying vec2 vUv,vL,vR,vT,vB;uniform vec2 texelSize;void main(){vUv=aPosition*0.5+0.5;vL=vUv-vec2(texelSize.x,0.0);vR=vUv+vec2(texelSize.x,0.0);vT=vUv+vec2(0.0,texelSize.y);vB=vUv-vec2(0.0,texelSize.y);gl_Position=vec4(aPosition,0.0,1.0);}`);
   const clearShader = F(`precision mediump float;precision mediump sampler2D;varying highp vec2 vUv;uniform sampler2D uTexture;uniform float value;void main(){gl_FragColor=value*texture2D(uTexture,vUv);}`);
   const colorShader = F(`precision mediump float;uniform vec4 color;void main(){gl_FragColor=color;}`);
-  const displayShader = F(`precision highp float;precision highp sampler2D;varying vec2 vUv;uniform sampler2D uTexture;void main(){vec3 C=texture2D(uTexture,vUv).rgb;float a=max(C.r,max(C.g,C.b));gl_FragColor=vec4(C,a);}`);
-  const displayShadingShader = F(`precision highp float;precision highp sampler2D;varying vec2 vUv,vL,vR,vT,vB;uniform sampler2D uTexture;uniform vec2 texelSize;void main(){vec3 L=texture2D(uTexture,vL).rgb;vec3 R=texture2D(uTexture,vR).rgb;vec3 T=texture2D(uTexture,vT).rgb;vec3 B=texture2D(uTexture,vB).rgb;vec3 C=texture2D(uTexture,vUv).rgb;float dx=length(R)-length(L);float dy=length(T)-length(B);vec3 n=normalize(vec3(dx,dy,length(texelSize)));vec3 l=vec3(0.0,0.0,1.0);float diffuse=clamp(dot(n,l)+0.7,0.7,1.0);C.rgb*=diffuse;float a=max(C.r,max(C.g,C.b));gl_FragColor=vec4(C,a);}`);
+  const displayShader = F(`precision highp float;precision highp sampler2D;varying vec2 vUv;uniform sampler2D uTexture;void main(){vec3 C=texture2D(uTexture,vUv).rgb;C/=max(1.0,max(C.r,max(C.g,C.b)));float a=max(C.r,max(C.g,C.b));gl_FragColor=vec4(C,a);}`);
+  const displayShadingShader = F(`precision highp float;precision highp sampler2D;varying vec2 vUv,vL,vR,vT,vB;uniform sampler2D uTexture;uniform vec2 texelSize;void main(){vec3 L=texture2D(uTexture,vL).rgb;vec3 R=texture2D(uTexture,vR).rgb;vec3 T=texture2D(uTexture,vT).rgb;vec3 B=texture2D(uTexture,vB).rgb;vec3 C=texture2D(uTexture,vUv).rgb;float dx=length(R)-length(L);float dy=length(T)-length(B);vec3 n=normalize(vec3(dx,dy,length(texelSize)));vec3 l=vec3(0.0,0.0,1.0);float diffuse=clamp(dot(n,l)+0.7,0.7,1.0);C.rgb*=diffuse;C/=max(1.0,max(C.r,max(C.g,C.b)));float a=max(C.r,max(C.g,C.b));gl_FragColor=vec4(C,a);}`);
   const splatShader = F(`precision highp float;precision highp sampler2D;varying vec2 vUv;uniform sampler2D uTarget;uniform float aspectRatio;uniform vec3 color;uniform vec2 point;uniform float radius;void main(){vec2 p=vUv-point.xy;p.x*=aspectRatio;vec3 splat=exp(-dot(p,p)/radius)*color;vec3 base=texture2D(uTarget,vUv).xyz;gl_FragColor=vec4(base+splat,1.0);}`);
   const advectionManualFilteringShader = F(`precision highp float;precision highp sampler2D;varying vec2 vUv;uniform sampler2D uVelocity;uniform sampler2D uSource;uniform vec2 texelSize;uniform vec2 dyeTexelSize;uniform float dt;uniform float dissipation;vec4 bilerp(sampler2D sam,vec2 uv,vec2 tsize){vec2 st=uv/tsize-0.5;vec2 iuv=floor(st);vec2 fuv=fract(st);vec4 a=texture2D(sam,(iuv+vec2(0.5,0.5))*tsize);vec4 b=texture2D(sam,(iuv+vec2(1.5,0.5))*tsize);vec4 c=texture2D(sam,(iuv+vec2(0.5,1.5))*tsize);vec4 d=texture2D(sam,(iuv+vec2(1.5,1.5))*tsize);return mix(mix(a,b,fuv.x),mix(c,d,fuv.x),fuv.y);}void main(){vec2 coord=vUv-dt*bilerp(uVelocity,vUv,texelSize).xy*texelSize;gl_FragColor=dissipation*bilerp(uSource,coord,dyeTexelSize);gl_FragColor.a=1.0;}`);
   const advectionShader = F(`precision highp float;precision highp sampler2D;varying vec2 vUv;uniform sampler2D uVelocity;uniform sampler2D uSource;uniform vec2 texelSize;uniform float dt;uniform float dissipation;void main(){vec2 coord=vUv-dt*texture2D(uVelocity,vUv).xy*texelSize;gl_FragColor=dissipation*texture2D(uSource,coord);gl_FragColor.a=1.0;}`);
