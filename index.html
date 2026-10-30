@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Niroop H | Founder &amp; CEO, MAH Quantum</title>
-<meta name="description" content="Portfolio of Niroop H — Founder & CEO of MAH Quantum, Bengaluru. AI, DeepTech, sovereign intelligence systems and research.">
+<meta name="description" content="Niroop H — Founder & CEO of MAH Quantum, Bengaluru. AI, defence intelligence and advanced computing.">
 <meta property="og:title" content="Niroop H | Founder & CEO, MAH Quantum">
-<meta property="og:description" content="AI, DeepTech and sovereign intelligence systems.">
+<meta property="og:description" content="Founder & CEO of MAH Quantum, Bengaluru.">
 <meta property="og:image" content="niroop.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <script type="importmap">{ "imports": { "lenis": "https://unpkg.com/lenis@1.3.19/dist/lenis.mjs" } }</script>
 <style>
 :root{--hero-base:#04050c;--heading:#eef0f6;--body-muted:#b9becf;--on-media:#fff;--action-inverse:#fff;--action-inverse-fg:#2f2f33;--glass-fill:rgba(255,255,255,.08);--glass-border:rgba(255,255,255,.16);--scrim:rgba(4,5,12,.46);--scrim-strong:rgba(4,5,12,.68);--scrim-soft:rgba(4,5,12,.3);--duration-fast:150ms;--ease-entrance:cubic-bezier(.2,0,0,1)}
@@ -117,6 +117,24 @@ footer.hf{position:absolute;inset-inline:0;bottom:0;z-index:20;display:flex;just
 .gm span:hover{color:rgba(255,255,255,.9)}
 .gm i{color:#a78bfa;font-style:normal;font-size:2.5rem;align-self:center}
 @media(min-width:640px){.big{font-size:3.25rem}.gm span{font-size:8rem}}
+
+.eyebrow,.card small,.it small,.badge,.fc,.tags span,.chip,.stat span,.hud{font-family:"JetBrains Mono",ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em}
+.eyebrow{font-size:.72rem;color:#67e8f9;letter-spacing:.16em}
+.card small,.it small{font-size:.66rem}.tags span,.chip,.stat span{font-size:.64rem}.fc{font-size:.72rem}.badge{font-size:.68rem}
+.card{background-image:linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa),linear-gradient(#a78bfa,#a78bfa);background-size:14px 1px,1px 14px,14px 1px,1px 14px,14px 1px,1px 14px,14px 1px,1px 14px;background-position:0 0,0 0,100% 0,100% 0,0 100%,0 100%,100% 100%,100% 100%;background-repeat:no-repeat}
+.frame{position:fixed;inset:.9rem;z-index:35;pointer-events:none}
+.frame i{position:absolute;width:1.5rem;height:1.5rem;border:1px solid rgba(255,255,255,.35)}
+.frame i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}.frame i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+.frame i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}.frame i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+.scan{position:fixed;left:0;right:0;top:0;height:1px;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(103,232,249,.55),transparent);animation:scan 10s linear infinite}
+@keyframes scan{to{transform:translateY(100vh)}}
+.hud{display:none;position:absolute;z-index:20;bottom:4.5rem;font-size:.68rem;color:var(--body-muted)}
+.hud b{font-weight:400;color:#67e8f9}
+.hud.l{left:2.5rem}.hud.r{right:2.5rem;display:none;align-items:center;gap:.7rem}
+.hud.r::after{content:"";width:3rem;height:1px;background:linear-gradient(90deg,#67e8f9,transparent);animation:cue 2s ease-in-out infinite;transform-origin:left}
+@keyframes cue{50%{transform:scaleX(.3)}}
+@media(min-width:1024px){.hud.l{display:block}.hud.r{display:flex}}
+.snd{right:2rem;bottom:2rem}
 /* reveals */
 .rv{opacity:0;transition:opacity 700ms var(--ease-entrance),transform 700ms var(--ease-entrance)}
 .rv.nav{transform:translateY(-.75rem)}.rv.up{transform:translateY(1.25rem)}
@@ -133,7 +151,7 @@ footer.hf{position:absolute;inset-inline:0;bottom:0;z-index:20;display:flex;just
 .about p{color:var(--body-muted);line-height:1.6;margin-top:1rem;font-size:.95rem}
 .cards{display:grid;gap:1rem;margin-top:2rem}
 .card{border:1px solid var(--glass-border);background:var(--glass-fill);border-radius:1.5rem;padding:1.5rem;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color var(--duration-fast) var(--ease-entrance),background var(--duration-fast) var(--ease-entrance)}
-a.card:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3)}
+a.card:hover{background-color:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3)}
 .card small{display:block;color:var(--body-muted);font-size:.75rem;margin-bottom:.6rem}
 .card h3{font-weight:500;font-size:1.1rem;line-height:1.25;letter-spacing:-.01em}
 .card p{color:var(--body-muted);font-size:.9rem;line-height:1.55;margin-top:.6rem}
@@ -171,7 +189,9 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
 <body>
 <div class="progress" id="bar"></div>
 <div id="cur" aria-hidden="true"></div>
-<div id="intro"><div class="box"><p class="ey">Welcome</p><h2>NIROOP H</h2><p>Founder &amp; CEO · MAH Quantum</p><div class="actions"><button class="pill" id="enterS">Enter with sound</button><button class="pill ghost" id="enterQ">Enter silently</button></div></div></div>
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="scan" aria-hidden="true"></div>
+<div id="intro"><div class="box"><p class="ey">Founder &amp; CEO</p><h2>NIROOP H</h2><p>MAH Quantum · Bengaluru, India</p><div class="actions"><button class="pill" id="enterS">Enter with sound</button><button class="pill ghost" id="enterQ">Enter silently</button></div></div></div>
 <button class="snd" id="snd" aria-label="Toggle ambient music"><span><i></i><i></i><i></i><i></i></span></button>
 <canvas aria-hidden="true"></canvas>
 <div class="scrim" aria-hidden="true"></div>
@@ -192,7 +212,7 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
   <div class="col">
     <p class="badge rv up" data-d="320"><span id="role">Founder &amp; CEO · MAH Quantum</span></p>
     <h1 data-words="NIROOP H" data-d="480" data-s="85" data-t="720" data-y="26"></h1>
-    <p class="sub" data-words="Hi, I’m Niroop — Founder &amp; CEO of MAH Quantum in Bengaluru. I build AI, defence intelligence and advanced computing systems for a world that needs to think clearly." data-d="1150" data-s="22" data-t="600" data-y="14"></p>
+    <p class="sub" data-words="Founder and CEO of MAH Quantum, Bengaluru. Leading work in artificial intelligence, defence intelligence and advanced computing." data-d="1150" data-s="22" data-t="600" data-y="14"></p>
     <div class="actions rv up" data-d="1450"><a class="pill" href="#projects">View projects</a><a class="pill ghost" href="https://www.linkedin.com/in/nirooph" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
   </div>
 
@@ -202,7 +222,10 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
   <div class="fc rv up" data-d="2100" style="left:9%;bottom:24%"><span data-k="-18">Intel · IBM · Microsoft · Google Cloud</span></div>
   <div class="fc rv up" data-d="2250" style="right:8%;bottom:26%"><span data-k="30">Founders 2.0 Nominee · Singapore</span></div>
 
-  <footer class="hf rv up" data-d="1650">© 2026 Niroop H — engineered for deep work.</footer>
+  <div class="hud l rv up" data-d="2400">Bengaluru &nbsp;<b>12.9716° N, 77.5946° E</b>&nbsp; IST <b id="clk">--:--:--</b></div>
+  <div class="hud r rv up" data-d="2400">Scroll</div>
+
+  <footer class="hf rv up" data-d="1650">© 2026 Niroop H. All rights reserved.</footer>
 </section>
 
 <div class="marq" aria-hidden="true"><div class="track" id="trk"></div></div>
@@ -210,7 +233,7 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
 <section class="sec" id="about">
   <div class="wrap about sr">
     <div>
-      <div class="eyebrow">About</div>
+      <div class="eyebrow">01 / About</div>
       <h2>Founder &amp; CEO, MAH Quantum</h2>
       <p>Niroop H builds technology across AI, DeepTech and advanced computing from Bengaluru, India. He leads MAH Quantum and is pursuing a B.Tech in Computer Science &amp; Engineering (Honours in AI &amp; ML) at Christ University, Bangalore.</p>
       <div class="tags"><span>Artificial Intelligence</span><span>DeepTech</span><span>C4ISR</span><span>Edge AI</span><span>Advanced Computing</span><span>Semiconductors</span><span>Smart Grids</span><span>Research &amp; Development</span></div>
@@ -232,14 +255,14 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
 
 <section class="sec" id="vision">
   <div class="wrap">
-    <div class="eyebrow">Vision</div>
-    <p class="big" data-lit="Building sovereign, secure and intelligent systems at the intersection of AI, defence and deep technology — engineered in Bengaluru for a world that needs to think clearly."></p>
+    <div class="eyebrow">02 / Focus</div>
+    <p class="big" data-lit="I lead MAH Quantum, developing secure, sovereign technology across artificial intelligence, defence intelligence and advanced computing, from Bengaluru, India."></p>
   </div>
 </section>
 
 <section class="sec" id="organizations">
   <div class="wrap sr">
-    <div class="eyebrow">Organizations</div>
+    <div class="eyebrow">03 / Organizations</div>
     <h2>Work &amp; affiliations</h2>
     <div class="cards two">
       <a class="card" href="https://mahquantum.tech/" target="_blank" rel="noreferrer"><small>Founder &amp; Chief Executive Officer · Primary</small><h3>MAH Quantum™ ↗</h3><p>Technology and research organization working across AI, advanced computing, DeepTech and intelligent systems.</p></a>
@@ -252,7 +275,7 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
 
 <section class="sec" id="awards">
   <div class="wrap sr">
-    <div class="eyebrow">Honours &amp; awards</div>
+    <div class="eyebrow">04 / Honours &amp; awards</div>
     <h2>Recognition</h2>
     <div class="cards two">
       <article class="card award feat"><div class="ic">★</div><div><small>Aug 2026 · Karnataka Digital Economy Mission · MAH Quantum</small><h3>KDEM Dhruva Programme Awardee <span class="chip">Top 1,111 Companies</span></h3><p>Vetted and selected by an expert industry and defence jury — including leadership from the Data Security Council of India (DSCI), BEML Limited (Ministry of Defence) and global enterprise infrastructure executives — in recognition of MAH Quantum’s deep-tech engineering, architectural viability and infrastructure scalability.</p><div class="tags"><span>Nebula Tier</span><span>Deep Tech</span><span>Defence</span></div></div></article>
@@ -264,12 +287,12 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
 
 <section class="sec" id="projects">
   <div class="wrap sr">
-    <div class="eyebrow">Projects</div>
+    <div class="eyebrow">05 / Projects</div>
     <h2>Selected work</h2>
     <div class="cards">
       <article class="card"><small>Jul 2026 – Present · MAH Quantum</small><h3>ASURA Defence Intelligence System (ADIS)</h3><p>Zero-Trust Sovereign C4ISR &amp; Intelligence Fusion Engine — an air-gapped command, control and intelligence architecture.</p><div class="tags"><span>C4ISR</span><span>Zero-Trust</span></div></article>
       <article class="card"><small>Jul 2025 – Dec 2025 · Christ University</small><h3>AgriSentinel: Object Detection System</h3><p>AI-powered Red Palm Beetle detection running on an edge vision sensor.</p><div class="tags"><span>EdgeAI</span><span>Computer Vision</span></div></article>
-      <article class="card"><small>Christ University, Bangalore</small><h3>AGI Bionic Robot — Project AURORA</h3><p>An advanced humanoid initiative exploring the rise of human-aware AI.</p><div class="tags"><span>Leadership</span><span>Project Management</span></div></article>
+      <article class="card"><small>Christ University, Bangalore</small><h3>AGI Bionic Robot — Project AURORA</h3><p>Humanoid robotics initiative at Christ University focused on human-aware AGI.</p><div class="tags"><span>Leadership</span><span>Project Management</span></div></article>
     </div>
   </div>
 </section>
@@ -278,7 +301,7 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
 
 <section class="sec" id="records">
   <div class="wrap sr">
-    <div class="eyebrow">Public records</div>
+    <div class="eyebrow">06 / Public records</div>
     <h2>Verifiable identifiers</h2>
     <div class="cards">
       <a class="card" href="https://sam.gov/entities/view/P2K2F5T4FE26/coreData?status=Active&regId=18292847" target="_blank" rel="noreferrer"><small>Government record · U.S. Federal Government</small><h3>SAM.gov Entity Record</h3><p>P2K2F5T4FE26</p></a>
@@ -290,7 +313,7 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
 
 <section class="sec" id="partners">
   <div class="wrap sr">
-    <div class="eyebrow">Technology partners</div>
+    <div class="eyebrow">07 / Technology partners</div>
     <h2>Partner ecosystem</h2>
     <div class="cards two">
       <a class="card" href="https://www.intel.com/content/www/us/en/partner/showcase/storefront/a5Scv0000004BhdEAE/mah-quantum.html" target="_blank" rel="noreferrer"><small>Technology partner</small><h3>Intel Partner ↗</h3><p>MAH Quantum listing in the Intel Partner Directory.</p></a>
@@ -304,7 +327,7 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
 
 <section class="sec" id="journey">
   <div class="wrap sr">
-    <div class="eyebrow">Journey</div>
+    <div class="eyebrow">08 / Journey</div>
     <h2>Education &amp; milestones</h2>
     <div class="tl">
       <div class="it"><small>Sep 2026</small><h3>Nominated — Founders 2.0 &amp; Smart India Hackathon</h3><p>Entrepreneurial Excellence Award nomination (Singapore) and a Smart India Hackathon nomination.</p></div>
@@ -320,8 +343,8 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
 
 <section class="sec" id="contact">
   <div class="wrap sr">
-    <div class="eyebrow">Contact</div>
-    <h2>Let's connect</h2>
+    <div class="eyebrow">09 / Contact</div>
+    <h2>Contact</h2>
     <div class="cards">
       <a class="card" href="https://www.linkedin.com/in/nirooph" target="_blank" rel="noreferrer"><small>Professional profile</small><h3>LinkedIn ↗</h3></a>
       <a class="card" href="https://mahquantum.tech/" target="_blank" rel="noreferrer"><small>Organization</small><h3>MAH Quantum ↗</h3></a>
@@ -332,7 +355,7 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
     </div>
   </div>
 </section>
-<footer class="f">© 2026 Niroop H — engineered for deep work.</footer>
+<footer class="f">© 2026 Niroop H. All rights reserved.</footer>
 
 <script type="module">
 import Lenis from "lenis";
@@ -416,10 +439,12 @@ else document.getElementById("cur").remove();
 const big=document.querySelector(".big");big.innerHTML=big.dataset.lit.split(" ").map(w=>`<span>${w}</span>`).join(" ");const bw=[...big.children];
 const vis=()=>{const r=big.getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight*.8-r.top)/(r.height+innerHeight*.25)));bw.forEach((w,i)=>w.classList.toggle("lit",i<p*bw.length*1.05))};
 addEventListener("scroll",vis,{passive:true});vis();
-const gm=["FOUNDER","RESEARCHER","BUILDER","DEEP TECH","DEFENCE INTELLIGENCE","SOVEREIGN AI"].map(t=>`<span>${t}</span><i>✦</i>`).join("");document.getElementById("trk2").innerHTML=gm+gm;
+const gm=["FOUNDER","CEO","RESEARCH","ARTIFICIAL INTELLIGENCE","DEFENCE TECHNOLOGY","ADVANCED COMPUTING"].map(t=>`<span>${t}</span><i>✦</i>`).join("");document.getElementById("trk2").innerHTML=gm+gm;
 const eo=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;eo.unobserve(e.target);const el=e.target,t=el.textContent,n=20;let k=0;const id=setInterval(()=>{const c=Math.floor(k*t.length/n);el.textContent=t.split("").map((ch,i)=>ch===" "||i<c?ch:"ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%"[Math.random()*36|0]).join("");if(++k>n){el.textContent=t;clearInterval(id)}},40)}),{threshold:.5});
 document.querySelectorAll(".eyebrow").forEach(el=>eo.observe(el));
 addEventListener("pointermove",e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;document.querySelectorAll(".fc span").forEach(s=>{const k=+s.dataset.k;s.style.transform=`translate(${x*k}px,${y*k}px)`})});
+
+const clk=document.getElementById("clk"),tick=()=>clk.textContent=new Date().toLocaleTimeString("en-GB",{timeZone:"Asia/Kolkata"});tick();setInterval(tick,1000);
 
 try { const c = document.querySelector("canvas"); if (c) fluidSimulation(c); } catch (err) { console.warn("Fluid unavailable", err); }
 
