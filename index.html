@@ -70,6 +70,35 @@ footer.hf{position:absolute;inset-inline:0;bottom:0;z-index:20;display:flex;just
 .it small{display:block;font-size:.75rem;color:#a5b4fc;margin-bottom:.3rem}
 .it h3{font-weight:500;font-size:1.1rem;letter-spacing:-.01em}
 .it p{color:var(--body-muted);font-size:.9rem;line-height:1.55;margin-top:.3rem}
+
+.pill{transition:background var(--duration-fast) var(--ease-entrance),transform .25s var(--ease-entrance)}
+h1 .w{background:linear-gradient(90deg,#fff 0%,#c4b5fd 30%,#67e8f9 55%,#fff 80%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:-250% 0}}
+.sr.in .card,.sr.in .stat,.sr.in .it{animation:pop .75s var(--ease-entrance) backwards;animation-delay:calc(var(--i,0)*90ms)}
+@keyframes pop{from{opacity:0;transform:translateY(1.5rem) scale(.97)}}
+#intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;text-align:center;padding:1.25rem;background:rgba(4,5,12,.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:opacity .9s var(--ease-entrance),visibility .9s}
+#intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+#intro .box{display:flex;flex-direction:column;align-items:center;gap:1rem;animation:pop 1s var(--ease-entrance) backwards}
+#intro .ey{font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:var(--body-muted)}
+#intro h2{font-size:3rem;font-weight:500;letter-spacing:-.02em;background:linear-gradient(90deg,#67e8f9,#a78bfa,#f0abfc);-webkit-background-clip:text;background-clip:text;color:transparent}
+#intro p{color:var(--body-muted);font-size:1rem}
+#intro .actions{margin-top:1rem}
+.snd{position:fixed;right:1.25rem;bottom:1.25rem;z-index:40;width:3rem;height:3rem;border-radius:50%;border:1px solid var(--glass-border);background:var(--glass-fill);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:grid;place-items:center}
+.snd span{display:flex;align-items:center;gap:3px;height:1.1rem}
+.snd i{display:block;width:3px;height:100%;border-radius:2px;background:#fff;transform:scaleY(.2);transition:transform .3s}
+.snd.on i{animation:eq 1s ease-in-out infinite}
+.snd.on i:nth-child(2){animation-delay:.2s}.snd.on i:nth-child(3){animation-delay:.4s}.snd.on i:nth-child(4){animation-delay:.6s}
+@keyframes eq{0%,100%{transform:scaleY(.25)}50%{transform:scaleY(1)}}
+#cur{position:fixed;left:0;top:0;width:2.2rem;height:2.2rem;margin:-1.1rem 0 0 -1.1rem;border:1px solid rgba(167,139,250,.7);border-radius:50%;pointer-events:none;z-index:90;transition:width .25s,height .25s,margin .25s,background .25s;mix-blend-mode:screen}
+#cur.big{width:3.8rem;height:3.8rem;margin:-1.9rem 0 0 -1.9rem;background:rgba(139,92,246,.18)}
+.marq{position:relative;z-index:10;overflow:hidden;border-block:1px solid var(--glass-border);background:rgba(255,255,255,.03);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:1.1rem 0}
+.track{display:flex;gap:2.5rem;padding-right:2.5rem;width:max-content;animation:mq 40s linear infinite}
+.marq:hover .track{animation-play-state:paused}
+.track span{font-size:.95rem;color:var(--body-muted);white-space:nowrap}
+.track i{color:#a78bfa;font-style:normal}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media(hover:hover){body,a,button{cursor:none}}
+@media(min-width:640px){#intro h2{font-size:6rem}}
 /* reveals */
 .rv{opacity:0;transition:opacity 700ms var(--ease-entrance),transform 700ms var(--ease-entrance)}
 .rv.nav{transform:translateY(-.75rem)}.rv.up{transform:translateY(1.25rem)}
@@ -123,6 +152,9 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
 </head>
 <body>
 <div class="progress" id="bar"></div>
+<div id="cur" aria-hidden="true"></div>
+<div id="intro"><div class="box"><p class="ey">Welcome</p><h2>NIROOP H</h2><p>Founder &amp; CEO · MAH Quantum</p><div class="actions"><button class="pill" id="enterS">Enter with sound</button><button class="pill ghost" id="enterQ">Enter silently</button></div></div></div>
+<button class="snd" id="snd" aria-label="Toggle ambient music"><span><i></i><i></i><i></i><i></i></span></button>
 <canvas aria-hidden="true"></canvas>
 <div class="scrim" aria-hidden="true"></div>
 
@@ -148,6 +180,8 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
 
   <footer class="hf rv up" data-d="1650">© 2026 Niroop H — engineered for deep work.</footer>
 </section>
+
+<div class="marq" aria-hidden="true"><div class="track" id="trk"></div></div>
 
 <section class="sec" id="about">
   <div class="wrap about sr">
@@ -270,6 +304,7 @@ footer.f{position:relative;z-index:10;padding:2rem 1.25rem 3rem;text-align:cente
 <script type="module">
 import Lenis from "lenis";
 const lenis = new Lenis({ smoothWheel: true });
+lenis.stop();
 function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
 requestAnimationFrame(raf);
 
@@ -292,7 +327,7 @@ document.querySelectorAll("[data-words]").forEach(el => {
 // trim: nbsp + space doubles; remove nbsp
 document.querySelectorAll(".w").forEach(w => w.textContent = w.textContent.replace(/\u00A0$/, ""));
 
-requestAnimationFrame(() => requestAnimationFrame(() => {
+const reveal = () => requestAnimationFrame(() => requestAnimationFrame(() => {
   document.querySelectorAll(".rv").forEach(el => setTimeout(() => el.classList.add("in"), +el.dataset.d || 0));
   document.querySelectorAll(".w").forEach(el => el.classList.add("in"));
 }));
@@ -314,6 +349,35 @@ if(matchMedia("(hover:hover)").matches)document.querySelectorAll(".card").forEac
 });
 const roles=["Founder & CEO · MAH Quantum","Founder & Head of Research · MAH Quantum Research Institute","KDEM Dhruva Programme Awardee · Aug 2026"],rl=document.getElementById("role");let ri=0;
 setInterval(()=>{rl.classList.add("out");setTimeout(()=>{ri=(ri+1)%roles.length;rl.textContent=roles[ri];rl.classList.remove("out")},350)},3200);
+
+// ---- generative ambient music (Web Audio, no files) ----
+const Music=(()=>{let ctx,bus,master,tmr,step=0,on=false;
+const ch=[[57,60,64,67],[53,57,60,64],[48,55,59,64],[55,59,62,67]],mf=m=>440*Math.pow(2,(m-69)/12);
+function tone(f,t,d,type,v,atk){const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=f;o.detune.value=(Math.random()-.5)*14;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+atk);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(bus);o.start(t);o.stop(t+d+.1)}
+function chord(){const t=ctx.currentTime,c=ch[step++%ch.length];c.forEach(m=>{tone(mf(m-12),t,9.5,"sine",.07,2.5);tone(mf(m),t,9.5,"triangle",.03,3)});for(let i=0;i<9;i++){const m=c[Math.floor(Math.random()*4)]+12*(1+Math.floor(Math.random()*2));tone(mf(m),t+i*.9+Math.random()*.4,2.6,"sine",.05,.02)}}
+function init(){ctx=new(window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.gain.value=0;const lp=ctx.createBiquadFilter();lp.type="lowpass";lp.frequency.value=1500;bus=ctx.createGain();const dl=ctx.createDelay();dl.delayTime.value=.5;const fb=ctx.createGain();fb.gain.value=.45;bus.connect(lp);bus.connect(dl);dl.connect(fb);fb.connect(dl);dl.connect(lp);lp.connect(master);master.connect(ctx.destination)}
+return{get on(){return on},play(){if(!ctx)init();ctx.resume();master.gain.cancelScheduledValues(ctx.currentTime);master.gain.linearRampToValueAtTime(.7,ctx.currentTime+2.5);if(!on){chord();tmr=setInterval(chord,8000)}on=true;snd.classList.add("on")},
+pause(){if(!ctx)return;master.gain.linearRampToValueAtTime(0,ctx.currentTime+.6);clearInterval(tmr);on=false;snd.classList.remove("on");setTimeout(()=>!on&&ctx.suspend(),700)}}})();
+const snd=document.getElementById("snd");
+snd.onclick=()=>Music.on?Music.pause():Music.play();
+let wasOn=false;document.addEventListener("visibilitychange",()=>{if(document.hidden){wasOn=Music.on;if(wasOn)Music.pause()}else if(wasOn){Music.play();wasOn=false}});
+// ---- intro gate ----
+const intro=document.getElementById("intro");
+function enter(sound){intro.classList.add("hide");lenis.start();if(sound)Music.play();reveal();const c=document.querySelector("canvas");c&&c.burst&&c.burst(22)}
+document.getElementById("enterS").onclick=()=>enter(true);
+document.getElementById("enterQ").onclick=()=>enter(false);
+// ---- marquee, stagger index, magnetic buttons, cursor ring, click bursts ----
+const items=["KDEM Dhruva Awardee","Intel Partner","IBM Business Partner","Microsoft AI Cloud Partner","Google Cloud Partner","NATO NCAGE 8066Y","SAM.gov Entity Record","MAH Quantum Research Institute"];
+const strip=items.map(t=>`<span>${t}</span><i>◆</i>`).join("");document.getElementById("trk").innerHTML=strip+strip;
+document.querySelectorAll(".sr").forEach(w=>w.querySelectorAll(".card,.stat,.it").forEach((el,i)=>el.style.setProperty("--i",i)));
+addEventListener("click",()=>{const c=document.querySelector("canvas");c&&c.burst&&c.burst(5)});
+if(matchMedia("(hover:hover)").matches){
+  const cur=document.getElementById("cur");let tx=0,ty=0,cx=0,cy=0;
+  addEventListener("pointermove",e=>{tx=e.clientX;ty=e.clientY;cur.classList.toggle("big",!!e.target.closest("a,button"))});
+  (function f(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cur.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(f)})();
+  document.querySelectorAll(".pill").forEach(p=>{p.addEventListener("pointermove",e=>{const r=p.getBoundingClientRect();p.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});p.addEventListener("pointerleave",()=>p.style.transform="")});
+}
+else document.getElementById("cur").remove();
 
 try { const c = document.querySelector("canvas"); if (c) fluidSimulation(c); } catch (err) { console.warn("Fluid unavailable", err); }
 
@@ -469,6 +533,7 @@ function fluidSimulation(canvas) {
   }
 
   initFramebuffers();
+  canvas.burst = n => multipleSplats(n);
   multipleSplats(34);
   for (let i = 0; i < 8; i++) splatStack.push(10 + parseInt(Math.random() * 10));
   let lastColorChangeTime = Date.now(), virtualSeeded = false, orbitAngle = 0, vPrevX = 0, vPrevY = 0, virtualColor = null, lastVColorTime = 0;
